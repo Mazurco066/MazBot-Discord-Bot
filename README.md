@@ -23,3 +23,8 @@ Gabriel Mazurco Ribeiro
 ->kick: kicka um membro (parametros: @membro)
 
 ->ban: bane um membro (parametros: @membro)
+
+# Requisitos
+Requer node.js: https://nodejs.org/en/
+
+e FFmpeg: https://ffmpeg.zeranoe.com/builds/
