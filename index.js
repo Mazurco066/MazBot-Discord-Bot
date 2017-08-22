@@ -1,7 +1,7 @@
 const Discord = require('discord.js');  //definindo conexão com discord padrão
 const YTDL = require('ytdl-core');      //Incluindo biblioteca de baixar musicas do youtube
 const bot = new Discord.Client();       //definindo o bot como um novo client
-const TOKEN = "MzQ5NTgwNjYxOTk0MTYwMTI4.DH3j9Q.9VXLInRmwlrB_M1UJW8xxQr3zjs";  //token de acesso
+const TOKEN = "aqui você coloca seu token de acesso ao bot discord";  //token de acesso
 const PREFIXO = "->";
 
 //Funções para usos gerais
