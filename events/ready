@@ -1,0 +1,4 @@
+exports.run = (bot) => {
+	console.log('Bot iniciado com sucesso!'); //se tudo ocorrer bem retornara mensagem no console
+	bot.user.setStatus("status");
+}
