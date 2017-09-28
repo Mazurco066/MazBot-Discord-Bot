@@ -34,7 +34,7 @@ Para configurar prefixo do bot e seu token se informa os dados no [Config.json](
 
 ## Requisitos
 
-Requer:
+Para hospedar esse bot em seu computador voce precisará ter instalado os seguintes recursos:
 * **node.js**: https://nodejs.org/en/
 
 * **FFmpeg**: https://ffmpeg.zeranoe.com/builds/
