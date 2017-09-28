@@ -11,6 +11,7 @@ Desenvolver um bot para meu server Discord pessoal.
 Organizado em 2 diretórios:
   * [Commands](commands) - diretório onde é armazenado cada arquivo de comandos individualmente.
   * [Events](events) - diretório onde é armazenado arquivos de eventos definidos que o bot deve capturar
+
 Para configurar prefixo do bot e seu token se informa os dados no [Config](config.json)
 
 ## Recursos/Comandos
