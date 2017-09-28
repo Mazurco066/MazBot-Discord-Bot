@@ -14,24 +14,65 @@ const fs = require('fs');
 */
 
 var servers = {}; //para enfileirar musicas no comando play
+var position = 0;
 
 //Funções para usos gerais
 function play(connection, message){
 
-  var server = servers[message.guild.id]; //Pega a conexão com o server discord atual
-  server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));  //Estabelece conexão com API
+  try{
 
-  server.queue.shift(); //Retira da fila a musica que esta em andamento
+    var server = servers[message.guild.id];
+  
+      let stream = YTDL(server.queue[0], {audioonly: true});
 
-  server.dispatcher.on('end', function(){ //Quando acabar a transmissão da musica executar esse trecho
+      YTDL.getInfo(server.queue[0], function(err, info) {
+        const title = info.title;
+        const duration = info.length_seconds;
+        const URL = info.video_url;
+        const uploader = info.author.name;
+        const thumb = info.thumbnail_url;
+        console.log(`${message.author.username}, Tocando a Musica: '${title}.'`);
+        //Trocar essa porra aqui por um Embeed
+        const embed = new Discord.RichEmbed()
+          .setColor('#8bc34a')
+          .setTimestamp()
+          .setTitle(title)
+          .setThumbnail(thumb)
+          .addField('Uploaded by:', uploader, true)
+          .addField('Duration:', duration + ' seconds', true)
+          .addField('Requested by:', message.author.username, true)
+          .addField('Queue position:', 'Now Playing', true)
+          .addField('URL:', URL, true)
+          .setFooter('Mazbot - Mazurco066')
+        message.channel.sendEmbed(embed).catch(console.error);
+        });
+      
+      server.dispatcher = connection.playStream(stream);
+      server.queue.shift();
+      
+      //Evento de quando acaba a musica atual
+      server.dispatcher.on('end', function(){ //Quando acabar a transmissão da musica executar esse trecho
 
-    if (server.queue[0]){ //Verifica se tem outra musica na fila
-      play(connection, message);  //Se sim toca a proxima musica
-    }
-    else{
-      connection.disconnect();  //se não fecha a transmissao
-    }
-  });
+          position--;
+
+          if (server.queue[0]){ //Verifica se tem outra musica na fila
+            play(connection, message);  //Se sim toca a proxima musica
+          }
+          else{
+            connection.disconnect();  //se não fecha a transmissao
+          }
+      });
+  }
+  catch (err){
+
+    console.error("Erro Registrado: " + err);
+  }
+
+}
+
+function incrementPosition(){
+  //Para incrementar posição em outro módulo
+  position++;
 }
 //Funções para usos gerais
 
@@ -66,7 +107,8 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
   try {
     var commandFile = require(`./commands/${command}.js`);
     //Mandando os parametros server[array] e play[function] para uso de recursos musicais no BOT
-    commandFile.run(bot, message, args, servers, play); 
+    commandFile.run(bot, message, args, servers, play, position, incrementPosition, YTDL);
+    message.delete(1);
     
   }
   catch (err){
