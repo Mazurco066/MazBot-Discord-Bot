@@ -1,4 +1,4 @@
-# MazBot-Discord-Bot
+# MazBot
 Bot feito em javascript para meu server discord pessoal
 
 ## Objetivo
