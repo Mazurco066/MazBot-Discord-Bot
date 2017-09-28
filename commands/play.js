@@ -1,5 +1,7 @@
 exports.run = (bot , message, args, servers, play) => {
 
+  try{
+
     if (!args[1]){  //Verifica se o parametro foi passado corretamente
         message.channel.sendMessage("Por Favor insira um link ao usar esse comando!");
         return;
@@ -21,4 +23,8 @@ exports.run = (bot , message, args, servers, play) => {
         play(connection, message);
       });
 
+    }
+    catch (err){
+      console.error("Erro registrado: " + err);
+    }
 }

@@ -23,7 +23,17 @@ exports.run = (bot, message, args) => {
           }
           //Finalmente kickando o membro
           kickMember.kick().then(member => {  //kick pode retornar o membro kickado para uso de mensagem de confirmação
-            message.reply(member.user.username + " se fudeu!");
+
+            const Discord = require("discord.js");
+            const embed = new Discord.RichEmbed()
+                .setColor('#ffeb3b')
+                .setTimestamp()
+                .addField('Ação:', '__***Kick***__')
+                .addField('Usuário Kickado:', `${member.user.username}`)
+                .addField('Solicitado por:', `${message.author.username}`)
+                .setFooter('Mazbot - Mazurco066')
+            return message.channel.sendEmbed(embed).catch(console.error);
+
           }).catch(e => { //para ter certeza que bot não vai crashar adicionando tratamento de erro
             console.error("ERRO REGISTRADO" + e);
           });

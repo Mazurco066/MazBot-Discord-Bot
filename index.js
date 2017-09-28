@@ -13,10 +13,7 @@ const fs = require('fs');
   https://discordapi.com/permissions.html -> para definir permissoes do bot e adiciona-lo ao server
 */
 
-//Variáveis para usos gerais
 var servers = {}; //para enfileirar musicas no comando play
-//Variáveis para usos gerais
-
 
 //Funções para usos gerais
 function play(connection, message){

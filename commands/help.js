@@ -2,7 +2,7 @@ exports.run = (bot, message, args) => {
 
     const Discord = require('discord.js');  //Para a criação do Embeed
     var embed = new Discord.RichEmbed() //Embed é uma caixa muito legal que da pra por mensagens mto fodas aaaaaaaaaaaaa
-    .setColor(0x00FFFF) //Essa cor é um azul calcinha
+    .setColor('#ffa726') //Essa cor é um azul calcinha
     .addField("ping", "Retorna seu ping")  //o true é pra ficar na msm linha que o proximo campo
     .addField("rolldice", "joga um dado de 6, 10 ou 20 faces (parametros: d10/d20/vazio)")
     .addField("ask", "faça uma pergunta e o bot retorna uma resposta aleatoria (parametros: pergunta)")

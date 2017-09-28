@@ -4,8 +4,8 @@ exports.run = (bot , message, args, servers, play) => {
     
           try{
     
-            if (message.guild.voiceConnection){ //Se o bot estiver em algum canal de voz ele ira sair do canal
-              message.guild.voiceConnection.disconnect(); //Desconecta do canal de voz
+            while (server.dispatcher){ //Verifica se tem musica tocando no momento se tiver
+              server.dispatcher.end();  //Finaliza a execução da musica atual
             }
     
           }catch(err){

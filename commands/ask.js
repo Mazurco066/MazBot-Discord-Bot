@@ -9,9 +9,9 @@ exports.run = (bot, message, args) => {
             "vai se fuder"
         ];
 
-        message.channel.sendMessage(respostas[Math.floor(Math.random() * respostas.length)]);
+        message.channel.send(respostas[Math.floor(Math.random() * respostas.length)]);
       }
       else{
-        message.channel.sendMessage('Faça alguma pergunta!');
+        message.channel.send('Faça alguma pergunta!');
       }
 }

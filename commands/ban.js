@@ -23,7 +23,17 @@ exports.run = (bot, message, args) => {
           }
           //Finalmente banindo o membro
           banMember.ban().then(member => {  //kick pode retornar o membro kickado para uso de mensagem de confirmação
-            message.reply(member.user.username + " se fudeu bonito!");
+            
+            const Discord = require("discord.js");
+            const embed = new Discord.RichEmbed()
+                .setColor('#FF0000')
+                .setTimestamp()
+                .addField('Ação:', '__***Ban***__')
+                .addField('Usuário Banido:', `${member.user.username}`)
+                .addField('Solicitado por:', `${message.author.username}`)
+                .setFooter('Mazbot - Mazurco066')
+            return message.channel.sendEmbed(embed).catch(console.error);
+
           }).catch(e => { //para ter certeza que bot não vai crashar adicionando tratamento de erro
             console.error("ERRO REGISTRADO" + e);
           });
