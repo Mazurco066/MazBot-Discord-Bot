@@ -17,6 +17,7 @@ const fs = require('fs');
 var servers = {}; //para enfileirar musicas no comando play
 //Variáveis para usos gerais
 
+
 //Funções para usos gerais
 function play(connection, message){
 
