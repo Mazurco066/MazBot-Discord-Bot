@@ -42,6 +42,30 @@ Para hospedar esse bot em seu computador voce precisará ter instalado os seguin
 ## Instalação
 Para usar esse bot em seu server Discord siga os seguintes passos:
 
+1. **Clone o repositório pelo Client GUI ou via Linha de Comando:**
+
+```bash
+$ git clone https://github.com/Mazurco066/Mazbot.git
+```
+
+2. **Navegue até o repositório clonado.**
+
+```bash
+$ cd Mazbot
+```
+
+3. **Instale as dependencias.**
+
+```bash
+$ npm install
+```
+
+4. **Gere os arquivos statics.**
+
+```bash
+$ npm run build
+```
+
 ## License
 
 Esse projeto esta protegido pela licença MIT - veja [LICENSE](LICENSE) para mais detalhes
