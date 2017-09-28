@@ -34,9 +34,10 @@ Para configurar prefixo do bot e seu token se informa os dados no [Config.json](
 
 ## Requisitos
 
-Requer **node.js**: https://nodejs.org/en/
+Requer:
+* **node.js**: https://nodejs.org/en/
 
-e **FFmpeg**: https://ffmpeg.zeranoe.com/builds/
+* **FFmpeg**: https://ffmpeg.zeranoe.com/builds/
 
 ## Instalação
 Para usar esse bot em seu server Discord siga os seguintes passos:
