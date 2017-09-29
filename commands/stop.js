@@ -1,11 +1,12 @@
-exports.run = (bot , message, args, servers, play) => {
+exports.run = (bot , message, args, servers, play, position) => {
 
     var server = servers[message.guild.id];
     
-          try{
-    
-            while (server.dispatcher){ //Verifica se tem musica tocando no momento se tiver
-              server.dispatcher.end();  //Finaliza a execução da musica atual
+          try{  //Método para Tirar todas musicas pendentes da fila
+
+            for (var i = 0; i <= position; i++){
+              //Para cade musica pendente acabalas
+              server.dispatcher.end();
             }
     
           }catch(err){
