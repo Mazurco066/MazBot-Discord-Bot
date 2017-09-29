@@ -11,11 +11,11 @@ exports.run = (bot , message, args, servers, play) => {
                     server.queue.splice(i, 1);
                 }
                 server.dispatcher.end();
-                console.log("[" + new Date().toLocaleString() + "] Stopped the queue.");
+                console.log("MUSIC ACTION [" + new Date().toLocaleString() + "] Stopped the queue.");
             }
     
           }catch(err){
-            console.error("Erro Registrado: " + err);
+            console.error("Error: " + err);
           }
           
 }

@@ -39,7 +39,7 @@ function play(connection, message){
         const URL = info.video_url;
         const uploader = info.author.name;
         const thumb = info.thumbnail_url;
-        console.log(`[${message.author.username}], Playing the requested music: '${title}.'`);
+        console.log(`MUSIC ACTION Requested by: [${message.author.username}], Playing the requested music: '${title}.'`);
         const embed = new Discord.RichEmbed()
           .setColor('#8bc34a')
           .setTimestamp()
@@ -70,7 +70,7 @@ function play(connection, message){
   }
   catch (err){
 
-    console.error("Erro Registrado: " + err);
+    console.error("Error: " + err);
   }
 
 }
@@ -132,7 +132,7 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
     
   }
   catch (err){
-    console.error(err);
+    console.error("Error: " + err);
   }
 
 });

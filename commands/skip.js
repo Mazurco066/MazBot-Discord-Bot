@@ -9,7 +9,7 @@ exports.run = (bot , message, args, servers, play) => {
             }
     
           }catch(err){
-            console.error("Erro registrado: " + err)
+            console.error("Error: " + err)
           }
 
 }

@@ -28,14 +28,14 @@ exports.run = (bot, message, args) => {
             const embed = new Discord.RichEmbed()
                 .setColor('#ffeb3b')
                 .setTimestamp()
-                .addField('Ação:', '__***Kick***__')
-                .addField('Usuário Kickado:', `${member.user.username}`)
-                .addField('Solicitado por:', `${message.author.username}`)
+                .addField('Action:', '__***Kick***__')
+                .addField('Kicked Member:', `${member.user.username}`)
+                .addField('Requested by:', `${message.author.username}`)
                 .setFooter('Mazbot - Mazurco066')
             return message.channel.send({embed}).catch(console.error);
 
           }).catch(e => { //para ter certeza que bot não vai crashar adicionando tratamento de erro
-            console.error("ERRO REGISTRADO" + e);
+            console.error("Error" + e);
           });
 
 }

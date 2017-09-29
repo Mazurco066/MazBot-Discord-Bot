@@ -33,7 +33,7 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
           const URL = info.video_url;
           const uploader = info.author.name;
           const thumb = info.thumbnail_url;
-          console.log(`[${message.author.username}], Added to Queue: '${title}.'`);
+          console.log(`MUSIC ACTION Requested by [${message.author.username}], Added to Queue: '${title}.'`);
           const embed = new Discord.RichEmbed()
           .setColor('#8bc34a')
           .setTimestamp()
@@ -59,6 +59,6 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
 
     }
     catch (err){
-      console.error("Erro registrado: " + err);
+      console.error("Error: " + err);
     }
 }
