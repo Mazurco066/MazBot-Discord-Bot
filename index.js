@@ -1,8 +1,8 @@
 const Discord = require('discord.js');  //definindo conexão com discord padrão
 const YTDL = require('ytdl-core');      //Incluindo biblioteca de baixar musicas do youtube
-const bot = new Discord.Client();       //definindo o bot como um novo client
 const config = require('./config.json');  //Recuperando dados do arquivo de configuração
-const fs = require('fs');
+const fs = require('fs'); //Definindo constante fs para inicialização de eventos
+const bot = new Discord.Client();       //definindo o bot como um novo client
 
 /*
   LINKS PARA VALIDAÇÃO DO BOT NO DISCORD
@@ -70,6 +70,14 @@ function play(connection, message){
 
 }
 
+function matchYoutubeUrl(url) {
+  var p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  if(url.match(p)){
+      return url.match(p)[1];
+  }
+  return false;
+}
+
 function incrementPosition(){
   //Para incrementar posição em outro módulo
   position++;
@@ -110,7 +118,7 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
   try {
     var commandFile = require(`./commands/${command}.js`);
     //Mandando os parametros server[array] e play[function] para uso de recursos musicais no BOT
-    commandFile.run(bot, message, args, servers, play, position, incrementPosition, YTDL);
+    commandFile.run(bot, message, args, servers, play, position, incrementPosition, YTDL, matchYoutubeUrl);
     message.delete(1);
     
   }
