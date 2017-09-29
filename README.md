@@ -63,7 +63,7 @@ $ npm install
 4. **Gere os arquivos statics.**
 
 ```bash
-$ npm run build
+$ npm index build
 ```
 
 ## License
