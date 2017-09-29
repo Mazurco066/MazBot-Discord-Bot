@@ -16,7 +16,14 @@ const bot = new Discord.Client();       //definindo o bot como um novo client
 var servers = {}; //para enfileirar musicas no comando play
 var position = 0;
 
-//Funções para usos gerais
+/**
+ * Javascript method that queue and play a song from Youtube
+ * 
+ * @param {*} connection
+ *  - receive the API connection object 
+ * @param {*} message 
+ *  - receive the message used to call this command
+ */
 function play(connection, message){
 
   try{
@@ -70,6 +77,14 @@ function play(connection, message){
 
 }
 
+/**
+ * Javascript method that validates a Youtube URL 
+ * 
+ * @param {*} url
+ *  - receive a string to validate 
+ * @return
+ *  - if isValid it returns the video ID ifNot returns false 
+ */
 function matchYoutubeUrl(url) {
   var p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
   if(url.match(p)){
@@ -82,7 +97,7 @@ function incrementPosition(){
   //Para incrementar posição em outro módulo
   position++;
 }
-//Funções para usos gerais
+
 
 //Método para inicializar Eventos Definidos em Arquivos na pasta events.
 fs.readdir("./events/", (err, files) =>{
