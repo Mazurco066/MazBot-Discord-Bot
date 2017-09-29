@@ -1,12 +1,17 @@
-exports.run = (bot , message, args, servers, play, position) => {
+exports.run = (bot , message, args, servers, play) => {
 
     var server = servers[message.guild.id];
     
           try{  //Método para Tirar todas musicas pendentes da fila
 
-            for (var i = 0; i <= position; i++){
-              //Para cada musica pendente acabalas
-              server.dispatcher.end();
+            if (message.guild.voiceConnection){
+
+                for (var i = server.queue.length - 1; i >= 0; i--) {
+
+                    server.queue.splice(i, 1);
+                }
+                server.dispatcher.end();
+                console.log("[" + new Date().toLocaleString() + "] Stopped the queue.");
             }
     
           }catch(err){

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');  //definindo conexão com discord padrão
-const YTDL = require('ytdl-core');      //Incluindo biblioteca de baixar musicas do youtube
+const YTDL = require('ytdl-core');      //Incluindo API de baixar musicas do youtube
+const search = require('youtube-search'); //Incluindo API de procurar musicas do youtube
 const config = require('./config.json');  //Recuperando dados do arquivo de configuração
 const fs = require('fs'); //Definindo constante fs para inicialização de eventos
 const bot = new Discord.Client();       //definindo o bot como um novo client
@@ -14,7 +15,6 @@ const bot = new Discord.Client();       //definindo o bot como um novo client
 */
 
 var servers = {}; //para enfileirar musicas no comando play
-var position = 0;
 
 /**
  * Javascript method that queue and play a song from Youtube
@@ -32,13 +32,14 @@ function play(connection, message){
   
       let stream = YTDL(server.queue[0], {audioonly: true});
 
+      message.channel.send("Reproduzindo Agora!");
       YTDL.getInfo(server.queue[0], function(err, info) {
         const title = info.title;
         const duration = info.length_seconds;
         const URL = info.video_url;
         const uploader = info.author.name;
         const thumb = info.thumbnail_url;
-        console.log(`${message.author.username}, Tocando a Musica: '${title}.'`);
+        console.log(`[${message.author.username}], Playing the requested music: '${title}.'`);
         //Trocar essa porra aqui por um Embeed
         const embed = new Discord.RichEmbed()
           .setColor('#8bc34a')
@@ -59,8 +60,6 @@ function play(connection, message){
       
       //Evento de quando acaba a musica atual
       server.dispatcher.on('end', function(){ //Quando acabar a transmissão da musica executar esse trecho
-
-          position--;
 
           if (server.queue[0]){ //Verifica se tem outra musica na fila
             play(connection, message);  //Se sim toca a proxima musica
@@ -91,11 +90,6 @@ function matchYoutubeUrl(url) {
       return url.match(p)[1];
   }
   return false;
-}
-
-function incrementPosition(){
-  //Para incrementar posição em outro módulo
-  position++;
 }
 
 
@@ -133,8 +127,10 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
   try {
     var commandFile = require(`./commands/${command}.js`);
     //Mandando os parametros server[array] e play[function] para uso de recursos musicais no BOT
-    commandFile.run(bot, message, args, servers, play, position, incrementPosition, YTDL, matchYoutubeUrl);
-    message.delete(1);
+    //Mandando os parametros position[int] e incrementPosition[function] para manipulação de fila de músicas
+    //Mandando os parametros YTDL[API], search[API] e mathYoutubeUrl[function] para buscas de música no youtube
+    commandFile.run(bot, message, args, servers, play, YTDL, matchYoutubeUrl, search);
+    //message.delete(1);
     
   }
   catch (err){
