@@ -5,7 +5,7 @@ exports.run = (bot , message, args, servers, play, position) => {
           try{  //Método para Tirar todas musicas pendentes da fila
 
             for (var i = 0; i <= position; i++){
-              //Para cade musica pendente acabalas
+              //Para cada musica pendente acabalas
               server.dispatcher.end();
             }
     
