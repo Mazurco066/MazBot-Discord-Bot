@@ -97,10 +97,13 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
 
   if (message.author.equals(bot.user)) return;  //Validação basica para que bot n se auto responda
   if (!message.content.startsWith(config.prefix)) return; //Verifica se a mensagem começa com o prefixo indicado
-  var args = message.content.substring(config.prefix.lenght).split(" "); //gera um array list com argumentos a mais dos comandos
+  
+  var pr = config.prefix.toString();
+  pr = parseInt(pr.length);
+  var args = message.content.substring(pr).split(" "); //gera um array list com argumentos a mais dos comandos
 
   var command = message.content.split(" ")[0];
-  command = command.slice(2);
+  command = command.slice(pr);
 
   console.log("COMANDO EXECUTADO: " + command + " por " + message.author.username);
 
