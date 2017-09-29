@@ -26,6 +26,7 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
         //Para confirmar Música desejaca com usuário imprime essa confirmação na tela
         message.channel.send("Música Adicionada a Fila de Reprodução!");
         const Discord = require('discord.js');  //Para criação do Embeed
+
         YTDL.getInfo(args[1], function(err, info) {
           const title = info.title;
           const duration = info.length_seconds;
@@ -33,19 +34,18 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
           const uploader = info.author.name;
           const thumb = info.thumbnail_url;
           console.log(`[${message.author.username}], Added to Queue: '${title}.'`);
-          //Trocar essa porra aqui por um Embeed
           const embed = new Discord.RichEmbed()
-            .setColor('#8bc34a')
-            .setTimestamp()
-            .setTitle(title)
-            .setThumbnail(thumb)
-            .addField('Uploaded by:', uploader, true)
-            .addField('Duration:', duration + ' seconds', true)
-            .addField('Requested by:', message.author.username, true)
-            .addField('Queue position:', server.queue.length, true)
-            .addField('URL:', URL, true)
-            .setFooter('Mazbot - Mazurco066')
-          message.channel.sendEmbed(embed).catch(console.error);
+          .setColor('#8bc34a')
+          .setTimestamp()
+          .setTitle(title)
+          .setThumbnail(thumb)
+          .addField('Uploaded by:', uploader, true)
+          .addField('Duration:', duration + ' seconds', true)
+          .addField('Requested by:', message.author.username, true)
+          .addField('Queue position:', server.queue.length, true)
+          .addField('URL:', URL, true)
+          .setFooter('Mazbot - Mazurco066')
+          message.channel.send({embed}).catch(console.error);
         });
         
         server.queue.push(args[1]); //coloca a musica na fila

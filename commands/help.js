@@ -12,6 +12,6 @@ exports.run = (bot, message, args) => {
     .addField("ban", "bane um membro (parametros: @membro)")
     .addField("kick", "kicka um membro (parametros: @membro)")  
     .setFooter("Esses são os comandos desse BOT!")  //Aqui é o conteúdo do rodapé do meu fucking foda embed
-  message.channel.sendEmbed(embed); //Mostrando meu embed na tela
+  message.channel.send({embed}); //Mostrando meu embed na tela
 
 }

@@ -12,6 +12,6 @@ exports.run = (bot, message, args) => {
             .addField("Bot Ping", ping, true)  //o true é pra ficar na msm linha que o proximo campo
             .addField("Value", "ms", true)  //msm coisa aqui
             .setFooter("This is your ping!")  //Aqui é o conteúdo do rodapé do meu fucking foda embed
-        message.channel.sendEmbed(embed); //Mostrando meu embed na tela
+        message.channel.send({embed}); //Mostrando meu embed na tela
 
 }

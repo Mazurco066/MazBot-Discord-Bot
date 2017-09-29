@@ -32,7 +32,7 @@ exports.run = (bot, message, args) => {
                 .addField('Usuário Banido:', `${member.user.username}`)
                 .addField('Solicitado por:', `${message.author.username}`)
                 .setFooter('Mazbot - Mazurco066')
-            return message.channel.sendEmbed(embed).catch(console.error);
+            return message.channel.send({embed}).catch(console.error);
 
           }).catch(e => { //para ter certeza que bot não vai crashar adicionando tratamento de erro
             console.error("ERRO REGISTRADO" + e);

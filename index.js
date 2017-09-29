@@ -40,7 +40,6 @@ function play(connection, message){
         const uploader = info.author.name;
         const thumb = info.thumbnail_url;
         console.log(`[${message.author.username}], Playing the requested music: '${title}.'`);
-        //Trocar essa porra aqui por um Embeed
         const embed = new Discord.RichEmbed()
           .setColor('#8bc34a')
           .setTimestamp()
@@ -52,7 +51,7 @@ function play(connection, message){
           .addField('Queue position:', 'Now Playing', true)
           .addField('URL:', URL, true)
           .setFooter('Mazbot - Mazurco066')
-        message.channel.sendEmbed(embed).catch(console.error);
+        message.channel.send({embed}).catch(console.error);
         });
       
       server.dispatcher = connection.playStream(stream);
@@ -122,12 +121,11 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
   var command = message.content.split(" ")[0];
   command = command.slice(pr);
 
-  console.log("COMANDO EXECUTADO: " + command + " por " + message.author.username);
+  console.log(`COMMAND ${command} requested by [${message.author.username}]`);
 
   try {
     var commandFile = require(`./commands/${command}.js`);
     //Mandando os parametros server[array] e play[function] para uso de recursos musicais no BOT
-    //Mandando os parametros position[int] e incrementPosition[function] para manipulação de fila de músicas
     //Mandando os parametros YTDL[API], search[API] e mathYoutubeUrl[function] para buscas de música no youtube
     commandFile.run(bot, message, args, servers, play, YTDL, matchYoutubeUrl, search);
     //message.delete(1);

@@ -50,7 +50,7 @@ exports.run = (bot, message, args) => {
                     .addField('Retirou número: ', `${number}`)
                     .addField('Solicitado por:', `${message.author.username}`)
                     .setFooter('Mazbot - Mazurco066')
-                return message.channel.sendEmbed(embed).catch(console.error);
+                return message.channel.send({embed}).catch(console.error);
               }
               
 }
