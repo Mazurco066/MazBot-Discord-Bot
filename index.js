@@ -15,6 +15,10 @@ const bot = new Discord.Client();       //definindo o bot como um novo client
 */
 
 var servers = {}; //para enfileirar musicas no comando play
+var opts = {  //Para uso da api de pesquisa no youtube
+  maxResults: 1,
+  key: config.key
+};
 
 /**
  * Javascript method that queue and play a song from Youtube
@@ -127,7 +131,7 @@ bot.on('message', function(message) {  //evento de uma mensagem ser digitada
     var commandFile = require(`./commands/${command}.js`);
     //Mandando os parametros server[array] e play[function] para uso de recursos musicais no BOT
     //Mandando os parametros YTDL[API], search[API] e mathYoutubeUrl[function] para buscas de música no youtube
-    commandFile.run(bot, message, args, servers, play, YTDL, matchYoutubeUrl, search);
+    commandFile.run(bot, message, args, servers, play, YTDL, matchYoutubeUrl, search, opts);
     //message.delete(1);
     
   }
