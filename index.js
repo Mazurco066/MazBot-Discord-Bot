@@ -16,7 +16,7 @@ const bot = new Discord.Client();       //definindo o bot como um novo client
 
 var servers = {}; //para enfileirar musicas no comando play
 var opts = {  //Para uso da api de pesquisa no youtube
-  maxResults: 1,
+  maxResults: parseInt(config.max.toString()),
   key: config.key
 };
 

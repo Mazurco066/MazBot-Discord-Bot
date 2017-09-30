@@ -20,12 +20,26 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
         //Se não for válida usará a API youtube-search para buscar pelo nome do video informado
         search(pesquisa, opts, function(err, results) {
 
+            //Validção para ver se encontrou algum resultado
             if (!results){
-              console.log("MUSIC ACTION - Not Found");
+              console.log("MUSIC ACTION - No Results!");
               return message.channel.send("No results for this search!");
             }
+            
+            //Verificando os resultados encontrados para ver se encontra algum válido
+            var found = false;
+            for (var i = 0; i < results.length; i++){
 
-            if (!matchYoutubeUrl(results[0].link)){
+              if(matchYoutubeUrl(results[i].link)){
+                found = true;
+                var index = results[i].link;
+                break;
+              }
+
+            }
+            
+            //Validação para ver se link retornado é de vídeo e não de um canal
+            if (!found){
               console.log("MUSIC ACTION - Not Found");
               return message.channel.send("Video not found!");
             }
@@ -33,7 +47,7 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
             //Para confirmar Música desejaca com usuário imprime essa confirmação na tela
             message.channel.send("Música Adicionada a Fila de Reprodução!");
             //Criando o Embed para mostrar ao usuário
-            YTDL.getInfo(results[0].link, function(err, info) {
+            YTDL.getInfo(index, function(err, info) {
               const title = info.title;
               const duration = info.length_seconds;
               const URL = info.video_url;
@@ -62,7 +76,7 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
           //Recupera a fila de músicas
           var server = servers[message.guild.id];
             
-          server.queue.push(results[0].link); //coloca a musica na fila
+          server.queue.push(index); //coloca a musica na fila
 
           //Se tudo ocorreu corretamente até agora ele ira chamar o método que reproduziar a música 
           if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
