@@ -2,7 +2,7 @@ exports.run = (bot, member) => {
 
   var guild = member.guild; //Variável para armaazenar a guilda
 
-  guild.defaultChannel.sendMessage('Bem Vindo ' + member.user.username + ', seu Burgues Safado!');
+  guild.defaultChannel.send('Bem Vindo ' + member.user.username + ', seu Burgues Safado!');
 
   var memberRole = guild.roles.find("name", "Membro");  
   if (!memberRole) return;  

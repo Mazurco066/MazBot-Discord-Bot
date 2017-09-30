@@ -9,6 +9,12 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
           return;
       }
 
+      //Verifica se o usuário esta em um canal de voz
+      if (!message.member.voiceChannel){     
+        return message.channel.send("Você deve estar em um canal de voz para usar esse recurso!");
+      }
+
+
       if (!matchYoutubeUrl(args[1])){ //Verifica se uma URL do youtube é válida
         
         //Recuperando a String de pesquisa
