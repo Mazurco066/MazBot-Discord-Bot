@@ -10,14 +10,8 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
       }
 
       if (!matchYoutubeUrl(args[1])){ //Verifica se uma URL do youtube é válida
-
-        //Verifica se ja existe um server de musicas definido
-        if (!servers[message.guild.id]) servers[message.guild.id] = {
-          queue: [] //Senão cria um agr
-        };
-
-        //Recupera a fila de músicas
-        var server = servers[message.guild.id];
+        
+        //Recuperando a String de pesquisa
         var pesquisa = "";
         for (var i = 1; i < args.length; i++){
           pesquisa = pesquisa + " " + args[i];
@@ -25,40 +19,56 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
 
         //Se não for válida usará a API youtube-search para buscar pelo nome do video informado
         search(pesquisa, opts, function(err, results) {
-          
-          if(err) return console.log(err);  //Caso ocorra algum erro durante a busca
 
-          //Para confirmar Música desejaca com usuário imprime essa confirmação na tela
-          message.channel.send("Música Adicionada a Fila de Reprodução!");
-          //Criando o Embed para mostrar ao usuário
-          YTDL.getInfo(results[0].link, function(err, info) {
-            const title = info.title;
-            const duration = info.length_seconds;
-            const URL = info.video_url;
-            const uploader = info.author.name;
-            const thumb = info.thumbnail_url;
-            console.log(`MUSIC ACTION Requested by [${message.author.username}], Added to Queue: '${title}.'`);
-            const embed = new Discord.RichEmbed()
-            .setColor('#8bc34a')
-            .setTimestamp()
-            .setTitle(title)
-            .setThumbnail(thumb)
-            .addField('Uploaded by:', uploader, true)
-            .addField('Duration:', duration + ' seconds', true)
-            .addField('Requested by:', message.author.username, true)
-            .addField('Queue position:', server.queue.length, true)
-            .addField('URL:', URL, true)
-            .setFooter('Mazbot - Mazurco066')
-            message.channel.send({embed}).catch(console.error);
-          });
-          
+            if (!results){
+              console.log("MUSIC ACTION - Not Found");
+              return message.channel.send("No results for this search!");
+            }
+
+            if (!matchYoutubeUrl(results[0].link)){
+              console.log("MUSIC ACTION - Not Found");
+              return message.channel.send("Video not found!");
+            }
+
+            //Para confirmar Música desejaca com usuário imprime essa confirmação na tela
+            message.channel.send("Música Adicionada a Fila de Reprodução!");
+            //Criando o Embed para mostrar ao usuário
+            YTDL.getInfo(results[0].link, function(err, info) {
+              const title = info.title;
+              const duration = info.length_seconds;
+              const URL = info.video_url;
+              const uploader = info.author.name;
+              const thumb = info.thumbnail_url;
+              console.log(`MUSIC ACTION Requested by [${message.author.username}], Added to Queue: '${title}.'`);
+              const embed = new Discord.RichEmbed()
+              .setColor('#8bc34a')
+              .setTimestamp()
+              .setTitle(title)
+              .setThumbnail(thumb)
+              .addField('Uploaded by:', uploader, true)
+              .addField('Duration:', duration + ' seconds', true)
+              .addField('Requested by:', message.author.username, true)
+              .addField('Queue position:', server.queue.length, true)
+              .addField('URL:', URL, true)
+              .setFooter('Mazbot - Mazurco066')
+              message.channel.send({embed}).catch(console.error);
+            });
+
+          //Verifica se ja existe um server de musicas definido
+          if (!servers[message.guild.id]) servers[message.guild.id] = {
+            queue: [] //Senão cria um agr
+          };
+
+          //Recupera a fila de músicas
+          var server = servers[message.guild.id];
+            
           server.queue.push(results[0].link); //coloca a musica na fila
 
           //Se tudo ocorreu corretamente até agora ele ira chamar o método que reproduziar a música 
           if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
             play(connection, message); 
           });
-
+          
         });
 
       }
