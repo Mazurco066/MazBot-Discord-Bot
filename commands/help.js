@@ -11,6 +11,7 @@ exports.run = (bot, message, args) => {
     .addField("pause", "Pause the atual music reproduction;")
     .addField("resume", "Resume the reproduction of a paused music;")
     .addField("skip", "Skip a song;")
+    .addField("forceskip", "Skip a song without votes (Admin needed)")
     .addField("stop", "Stop the music's queue in progress;")
     .addField("ban", "Ban a member. (parameters: @member);")
     .addField("kick", "Kick a member. (parameters: @member);")  
