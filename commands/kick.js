@@ -1,7 +1,11 @@
 exports.run = (bot, message, args) => {
 
-    var admRole = message.guild.roles.find("name", "Pika Das Galaxias");  //Coloque nome da role de adm aqui
+    const config = require('../config.json');
+    var searchRole = config.admin.toString();
     
+    var admRole = message.guild.roles.find("name", searchRole);  //Coloque nome da role de adm aqui
+    if (!admRole) return message.channel.send("Sorry, the requested admin role doesnt exists!");
+
           //Verificando se quem chamou pelo comando tem admRole
           if (!message.member.roles.has(admRole.id)) {
             //retorna mensagem de erro pra quem chamou pelo comando

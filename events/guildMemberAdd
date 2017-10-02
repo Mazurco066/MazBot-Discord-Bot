@@ -4,7 +4,10 @@ exports.run = (bot, member) => {
 
   guild.defaultChannel.send('Bem Vindo ' + member.user.username + ', seu Burgues Safado!');
 
-  var memberRole = guild.roles.find("name", "Membro");  
+  const config = require('../config.json');
+  var searchRole = config.member.toString();
+
+  var memberRole = guild.roles.find("name", searchRole);  
   if (!memberRole) return;  
   member.addRole(memberRole); 
 }
