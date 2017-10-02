@@ -8,6 +8,8 @@ exports.run = (bot, message, args) => {
     .addField("rolldice", "Roll a dice of 6, 10 or 20 faces (parameters: d10/d20/empty);")
     .addField("ask", "Ask a question and the bot will answers randomly. (parameters: question);")
     .addField("play", "Plays a music or video (Audio only) from Youtube. (parameters: Youtube URL or Search String);")
+    .addField("pause", "Pause the atual music reproduction;")
+    .addField("resume", "Resume the reproduction of a paused music;")
     .addField("skip", "Skip a song;")
     .addField("stop", "Stop the music's queue in progress;")
     .addField("ban", "Ban a member. (parameters: @member);")
