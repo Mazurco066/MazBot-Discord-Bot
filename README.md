@@ -63,12 +63,12 @@ $ npm install
 4. **Configure a aplicação para seu servidor Discord atravez do arquivo config do Json**
 
 ```bash
-  "token": "Insira o token do seu bot aqui",
-	"prefix": "Mantenha o que esta caso deseje utilizar prefixo padrão --, caso contrario modifique a seu gosto",
-	"admin": "Coloque o nome do role administrativo presente em seu server Discord",
-	"member": "Coloque o nome do role de membro presente em seu server Discord",
-	"max": 3,
-	"key": "AIzaSyAv7uQQGvTSO8sUQ9bZgOCXTEZtcClVz50"
+"token": "Insira o token do seu bot aqui",
+"prefix": "Mantenha o que esta caso deseje utilizar prefixo padrão --, caso contrario modifique a seu gosto",
+"admin": "Coloque o nome do role administrativo presente em seu server Discord",
+"member": "Coloque o nome do role de membro presente em seu server Discord",
+"max": 3,
+"key": "AIzaSyAv7uQQGvTSO8sUQ9bZgOCXTEZtcClVz50"
 ```
 
 5. **Gere os arquivos statics.**
