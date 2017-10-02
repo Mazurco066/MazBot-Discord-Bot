@@ -5,7 +5,7 @@ exports.run = (bot, message, args) => {
           //Verificando se quem chamou pelo comando tem admRole
           if (!message.member.roles.has(admRole.id)) {
             //retorna mensagem de erro pra quem chamou pelo comando
-            return message.reply("Negative! You dont have premission to use this command!");
+            return message.reply("Negative! You dont have permission to use this command!");
           }
           //Verificando se o usuário a ser kickado foi mencionado
           if (message.mentions.users.size === 0){
