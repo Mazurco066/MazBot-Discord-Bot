@@ -16,6 +16,8 @@ exports.run = (bot, message, args) => {
     .addField("ban", "Ban a member. (parameters: @member);")
     .addField("kick", "Kick a member. (parameters: @member);")  
     .setFooter("Those are the avaliable commands for this BOT!")  //Aqui é o conteúdo do rodapé do meu fucking foda embed
-    message.channel.send({embed}); //Mostrando meu embed na tela
+    message.author.send({embed}); //Mostrando meu embed para o chat privado com o membro que solicitou
+
+    message.reply("The command list was sent via Direct Message!");
 
 }
