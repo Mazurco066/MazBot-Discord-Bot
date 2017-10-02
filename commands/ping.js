@@ -1,8 +1,7 @@
 exports.run = (bot, message, args) => {
 
         message.channel.send("Ping?").then(msg => {
-             msg.edit(`A latência entre ${message.author} e o servidor é de ${msg.createdTimestamp - message.createdTimestamp}ms. A latência entre ${bot.user} e a API do Discord é de ${Math.round(bot.ping)}ms`);
+             msg.edit(`Latency between ${message.author} and Discord Server is: ${msg.createdTimestamp - message.createdTimestamp}ms.\nLatency between ${bot.user} and Discord API is: ${Math.round(bot.ping)}ms`);
         });
         
-
 }
