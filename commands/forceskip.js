@@ -3,7 +3,7 @@ exports.run = (bot , message, args, servers, play) => {
     var admRole = message.guild.roles.find("name", "Pika Das Galaxias");  //Coloque nome da role de adm aqui
     
     //Verificando se quem chamou pelo comando tem admRole
-    if (!message.member.roles.has(admRole.id)) return message.reply("Você não tem permissão para usar esse comando!");
+    if (!message.member.roles.has(admRole.id)) return message.reply("Negative! You dont have premission to use this command!");
     
     var server = servers[message.guild.id];
         
