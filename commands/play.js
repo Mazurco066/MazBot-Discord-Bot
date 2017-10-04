@@ -14,6 +14,7 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
         return message.channel.send("Você deve estar em um canal de voz para usar esse recurso!");
       }
 
+      var img = 'http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/32/Music-icon.png';
 
       if (!matchYoutubeUrl(args[1])){ //Verifica se uma URL do youtube é válida
         
@@ -50,8 +51,6 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
               return message.channel.send("Video not found!");
             }
 
-            //Para confirmar Música desejaca com usuário imprime essa confirmação na tela
-            message.channel.send("Música Adicionada a Fila de Reprodução!");
             //Criando o Embed para mostrar ao usuário
             YTDL.getInfo(index, function(err, info) {
               const title = info.title;
@@ -63,8 +62,9 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
               const embed = new Discord.RichEmbed()
               .setColor('#8bc34a')
               .setTimestamp()
-              .setTitle(title)
+              .setAuthor('Found Video Added to Queue', img)          
               .setThumbnail(thumb)
+              .addField('Title: ', title)
               .addField('Uploaded by:', uploader, true)
               .addField('Duration:', duration + ' seconds', true)
               .addField('Requested by:', message.author.username, true)
@@ -102,8 +102,6 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
         //Recupera a fila de músicas
         var server = servers[message.guild.id];
 
-        //Para confirmar Música desejaca com usuário imprime essa confirmação na tela
-        message.channel.send("Música Adicionada a Fila de Reprodução!");
         //Criando o Embed para mostrar ao usuário
         YTDL.getInfo(args[1], function(err, info) {
           const title = info.title;
@@ -115,8 +113,9 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
           const embed = new Discord.RichEmbed()
           .setColor('#8bc34a')
           .setTimestamp()
-          .setTitle(title)
+          .setAuthor('Found Video Added to Queue', img)
           .setThumbnail(thumb)
+          .addField('Title: ', title)
           .addField('Uploaded by:', uploader, true)
           .addField('Duration:', duration + ' seconds', true)
           .addField('Requested by:', message.author.username, true)

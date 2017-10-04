@@ -19,6 +19,7 @@ var opts = {  //Para uso da api de pesquisa no youtube
   maxResults: parseInt(config.max.toString()),
   key: config.key
 };
+var img = 'http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/32/Music-icon.png';  //Img é só para o Ícone de música
 
 /**
  * Javascript method that queue and play a song from Youtube
@@ -36,7 +37,6 @@ function play(connection, message){
   
       let stream = YTDL(server.queue[0], {audioonly: true});
 
-      message.channel.send("Reproduzindo Agora!");
       YTDL.getInfo(server.queue[0], function(err, info) {
         const title = info.title;
         const duration = info.length_seconds;
@@ -47,8 +47,9 @@ function play(connection, message){
         const embed = new Discord.RichEmbed()
           .setColor('#8bc34a')
           .setTimestamp()
-          .setTitle(title)
+          .setAuthor('Now Playing', img)
           .setThumbnail(thumb)
+          .addField('Title: ', title)
           .addField('Uploaded by:', uploader, true)
           .addField('Duration:', duration + ' seconds', true)
           .addField('Requested by:', message.author.username, true)
@@ -94,7 +95,6 @@ function matchYoutubeUrl(url) {
   }
   return false;
 }
-
 
 //Método para inicializar Eventos Definidos em Arquivos na pasta events.
 fs.readdir("./events/", (err, files) =>{
