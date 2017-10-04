@@ -14,7 +14,9 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
         return message.channel.send("Você deve estar em um canal de voz para usar esse recurso!");
       }
 
-      var img = 'http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/32/Music-icon.png';
+      //Recupera ícone de música
+      const config = require('../config.json');
+      var img = config.iconURL.toString();
 
       if (!matchYoutubeUrl(args[1])){ //Verifica se uma URL do youtube é válida
         
@@ -72,7 +74,7 @@ exports.run = (bot , message, args, servers, play, YTDL, matchYoutubeUrl, search
               .addField('URL:', URL, true)
               .setFooter('Mazbot - Mazurco066')
               message.channel.send({embed}).catch(console.error);
-            });
+          });
 
           //Verifica se ja existe um server de musicas definido
           if (!servers[message.guild.id]) servers[message.guild.id] = {

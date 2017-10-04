@@ -15,11 +15,11 @@ const bot = new Discord.Client();       //definindo o bot como um novo client
 */
 
 var servers = {}; //para enfileirar musicas no comando play
+var img = config.iconURL.toString();  //Img é só para o Ícone de música
 var opts = {  //Para uso da api de pesquisa no youtube
   maxResults: parseInt(config.max.toString()),
   key: config.key
 };
-var img = 'http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/32/Music-icon.png';  //Img é só para o Ícone de música
 
 /**
  * Javascript method that queue and play a song from Youtube
