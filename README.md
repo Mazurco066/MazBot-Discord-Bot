@@ -22,15 +22,19 @@ Para configurar prefixo do bot e seu token se informa os dados no [Config.json](
 
 * **ask** faça uma pergunta e o bot retorna uma resposta aleatoria (parametros: pergunta)
 
+* **kick** kicka um membro (parametros: @membro)
+
+* **ban** bane um membro (parametros: @membro)
+
 * **play** toca uma musica com base na url do youtube enviada (parametros: URL Youtube)
+
+* **pause** pausa a reprodução da música atual
+
+* **resume** retoma a execução de uma música pausada
 
 * **skip** pula a musica atual
 
 * **stop** para a fila de musicas tocando no bot
-
-* **kick** kicka um membro (parametros: @membro)
-
-* **ban** bane um membro (parametros: @membro)
 
 ## Requisitos
 
@@ -66,9 +70,7 @@ $ npm install
 "token": "Insira o token do seu bot aqui",
 "prefix": "Mantenha o que esta caso deseje utilizar prefixo padrão --, caso contrario modifique a seu gosto",
 "admin": "Coloque o nome do role administrativo presente em seu server Discord",
-"member": "Coloque o nome do role de membro presente em seu server Discord",
-"max": 3,
-"key": "AIzaSyAv7uQQGvTSO8sUQ9bZgOCXTEZtcClVz50"
+"member": "Coloque o nome do role de membro presente em seu server Discord"
 ```
 
 5. **Gere os arquivos statics.**
