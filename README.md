@@ -73,10 +73,10 @@ $ npm install
 "member": "Coloque o nome do role de membro presente em seu server Discord"
 ```
 
-5. **Gere os arquivos statics.**
+5. **Execute o Bot.**
 
 ```bash
-$ npm index build
+$ node index.js
 ```
 
 ## License
