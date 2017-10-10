@@ -1,8 +1,8 @@
 {
-	"token": "Place your token Here",
+	"token": "Place your token here",
 	"prefix": "--",
-	"admin": "Pika Das Galaxias",
-	"member": "Membro",
+	"admin": "Place your Admin role here ",
+	"member": "Place your Member role here",
 	"max": 3,
 	"key": "AIzaSyAv7uQQGvTSO8sUQ9bZgOCXTEZtcClVz50",
 	"iconURL" : "http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/32/Music-icon.png"
